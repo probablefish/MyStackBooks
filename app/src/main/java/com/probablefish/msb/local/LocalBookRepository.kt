@@ -1,5 +1,6 @@
 package com.probablefish.msb.local
 
+import com.probablefish.msb.data.AttainedState
 import com.probablefish.msb.data.Book
 
 class LocalBookRepository : ILocalBookRepository {
@@ -27,6 +28,14 @@ class LocalBookRepository : ILocalBookRepository {
 
     override fun removeAllBooks() {
         books.clear()
+    }
+
+    override fun setBookAsAttained(title: String) {
+        getBook(title)?.let { it.attainedState = AttainedState.ATTAINED }
+    }
+
+    override fun setBookAsUnattained(title: String) {
+        getBook(title)?.let { it.attainedState = AttainedState.UNATTAINED}
     }
 
 }

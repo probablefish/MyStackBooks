@@ -9,4 +9,6 @@ interface ILocalBookRepository {
     fun getBooks() : List<Book>
     fun removeBook(title: String)
     fun removeAllBooks()
+    fun setBookAsAttained(title: String)
+    fun setBookAsUnattained(title: String)
 }
