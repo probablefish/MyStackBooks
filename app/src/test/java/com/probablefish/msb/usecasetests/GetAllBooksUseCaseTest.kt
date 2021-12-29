@@ -1,7 +1,7 @@
 package com.probablefish.msb.usecasetests
 
-import com.probablefish.msb.Book
-import com.probablefish.msb.BookRepository
+import com.probablefish.msb.data.Book
+import com.probablefish.msb.local.LocalBookRepository
 import com.probablefish.msb.usecases.GetAllBooksUseCase
 import org.junit.Test
 
@@ -9,7 +9,7 @@ class GetAllBooksUseCaseTest {
 
     @Test
     fun `when use case is executed all books are returned`() {
-        val bookRepository = BookRepository()
+        val bookRepository = LocalBookRepository()
         val book1 = Book("book1")
         val book2 = Book("book2")
         bookRepository.addBook(book1)
@@ -22,7 +22,7 @@ class GetAllBooksUseCaseTest {
 
     @Test
     fun `when use case is executed and repository is empty then an empty list is returned`() {
-        val bookRepository = BookRepository()
+        val bookRepository = LocalBookRepository()
 
         val result = GetAllBooksUseCase(bookRepository).execute()
 

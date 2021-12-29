@@ -1,8 +1,8 @@
 package com.probablefish.msb.usecases
 
-import com.probablefish.msb.IBookRepository
+import com.probablefish.msb.local.ILocalBookRepository
 
-class GetAllBooksUseCase(private val bookRepository: IBookRepository) {
+class GetAllBooksUseCase(private val bookRepository: ILocalBookRepository) {
 
     fun execute() = bookRepository.getBooks()
 }

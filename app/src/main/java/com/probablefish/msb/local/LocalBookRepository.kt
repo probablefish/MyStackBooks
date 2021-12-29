@@ -1,6 +1,8 @@
-package com.probablefish.msb
+package com.probablefish.msb.local
 
-class BookRepository : IBookRepository {
+import com.probablefish.msb.data.Book
+
+class LocalBookRepository : ILocalBookRepository {
     private val books = mutableListOf<Book>()
 
     override fun addBook(book: Book) {

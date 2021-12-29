@@ -1,8 +1,8 @@
 package com.probablefish.msb.usecasetests
 
-import com.probablefish.msb.Book
-import com.probablefish.msb.BookRepository
-import com.probablefish.msb.IBookRepository
+import com.probablefish.msb.data.Book
+import com.probablefish.msb.local.LocalBookRepository
+import com.probablefish.msb.local.ILocalBookRepository
 import com.probablefish.msb.usecases.GetBookUseCase
 import org.junit.Test
 
@@ -11,7 +11,7 @@ class GetBookUseCaseTests {
     @Test
     fun `when a book title matches one in the repository then it is returned`() {
         val book = Book(title = "book1")
-        val bookRepository: IBookRepository = BookRepository().apply { addBook(book) }
+        val bookRepository: ILocalBookRepository = LocalBookRepository().apply { addBook(book) }
 
         val result = GetBookUseCase(bookRepository).execute("book1")
 
@@ -20,7 +20,7 @@ class GetBookUseCaseTests {
 
     @Test
     fun `when a book title does not match any in the repository then null is returned`() {
-        val bookRepository: IBookRepository = BookRepository().apply {
+        val bookRepository: ILocalBookRepository = LocalBookRepository().apply {
             addBook(
                 Book("book1")
             )}

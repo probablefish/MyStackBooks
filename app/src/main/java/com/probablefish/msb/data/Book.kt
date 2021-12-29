@@ -1,4 +1,4 @@
-package com.probablefish.msb
+package com.probablefish.msb.data
 
 data class Book(
     val title: String

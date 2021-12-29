@@ -1,6 +1,8 @@
-package com.probablefish.msb
+package com.probablefish.msb.local
 
-interface IBookRepository {
+import com.probablefish.msb.data.Book
+
+interface ILocalBookRepository {
     fun addBook(book: Book)
     fun addBooks(books: List<Book>)
     fun getBook(title: String) : Book?
