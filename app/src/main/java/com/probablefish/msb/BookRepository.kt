@@ -7,12 +7,24 @@ class BookRepository : IBookRepository {
         books.add(book)
     }
 
+    override fun addBooks(booksToBeAdded: List<Book>) {
+        books.addAll(booksToBeAdded)
+    }
+
     override fun getBook(title: String): Book? {
         return books.find { book -> book.title == title }
     }
 
     override fun getBooks(): List<Book> {
         return books
+    }
+
+    override fun removeBook(title: String) {
+        books.removeIf { book -> book.title == title}
+    }
+
+    override fun removeAllBooks() {
+        books.clear()
     }
 
 }
