@@ -11,11 +11,11 @@ class RemoveBookUseCaseTest {
     @Test
     fun `Given a book title that matches one in the repository it is removed`() {
         val repository = LocalBookRepository().apply {
-            addBook(Book("book1"))
+            addBook(Book(title = "book1"))
         }
 
-        RemoveBookUseCase(repository).execute("book1")
+        RemoveBookUseCase(repository).execute(title = "book1")
 
-        assertNull(repository.getBook("book1"))
+        assertNull(repository.getBook(title = "book1"))
     }
 }

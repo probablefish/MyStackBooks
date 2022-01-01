@@ -13,7 +13,7 @@ class GetBookUseCaseTests {
         val book = Book(title = "book1")
         val bookRepository: ILocalBookRepository = LocalBookRepository().apply { addBook(book) }
 
-        val result = GetBookUseCase(bookRepository).execute("book1")
+        val result = GetBookUseCase(bookRepository).execute(title = "book1")
 
         assert(result?.title == book.title)
     }
@@ -22,10 +22,10 @@ class GetBookUseCaseTests {
     fun `when a book title does not match any in the repository then null is returned`() {
         val bookRepository: ILocalBookRepository = LocalBookRepository().apply {
             addBook(
-                Book("book1")
+                Book(title = "book1")
             )}
 
-        val result = GetBookUseCase(bookRepository).execute("book2")
+        val result = GetBookUseCase(bookRepository).execute(title = "book2")
 
         assert(result == null)
     }

@@ -11,7 +11,7 @@ class AddBookUseCaseTests {
     @Test
     fun `a book can be added to the repository`() {
         val bookRepository: ILocalBookRepository = LocalBookRepository()
-        val book = Book("book1")
+        val book = Book(title = "book1")
 
         AddBookUseCase(bookRepository).execute(book)
 

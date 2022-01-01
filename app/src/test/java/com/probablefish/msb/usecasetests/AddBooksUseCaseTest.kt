@@ -11,7 +11,7 @@ class AddBooksUseCaseTest {
     @Test
     fun `Given a list of books when the usecase is executed then then are added to the repository`() {
         val bookRepository = LocalBookRepository()
-        val books = listOf(Book("book1"), Book("book2"))
+        val books = listOf(Book(title = "book1"), Book(title = "book2"))
 
         AddBooksUseCase(bookRepository).execute(books)
 

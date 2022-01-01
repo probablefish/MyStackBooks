@@ -11,8 +11,8 @@ class RemoveAllBooksUseCaseTest {
     @Test
     fun `when usecase is executed then all books are removed from the repository`() {
         val repository = LocalBookRepository().apply {
-            addBook(Book("book1"))
-            addBook(Book("book2"))
+            addBook(Book(title = "book1"))
+            addBook(Book(title = "book2"))
         }
 
         RemoveAllBooksUseCase(repository).execute()

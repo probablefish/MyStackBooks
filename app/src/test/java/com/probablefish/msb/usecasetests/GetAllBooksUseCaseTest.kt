@@ -10,8 +10,8 @@ class GetAllBooksUseCaseTest {
     @Test
     fun `when use case is executed all books are returned`() {
         val bookRepository = LocalBookRepository()
-        val book1 = Book("book1")
-        val book2 = Book("book2")
+        val book1 = Book(title = "book1")
+        val book2 = Book(title = "book2")
         bookRepository.addBook(book1)
         bookRepository.addBook(book2)
 
