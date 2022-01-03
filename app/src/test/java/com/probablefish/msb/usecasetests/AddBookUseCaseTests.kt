@@ -1,5 +1,7 @@
 package com.probablefish.msb.usecasetests
 
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.probablefish.msb.data.Book
 import com.probablefish.msb.local.LocalBookRepository
 import com.probablefish.msb.local.ILocalBookRepository
@@ -10,11 +12,11 @@ class AddBookUseCaseTests {
 
     @Test
     fun `a book can be added to the repository`() {
-        val bookRepository: ILocalBookRepository = LocalBookRepository()
-        val book = Book(title = "book1")
+        val bookRepository: ILocalBookRepository = mock()
+        val book = Book(title = "book1", author = "author")
 
         AddBookUseCase(bookRepository).execute(book)
 
-        assert(bookRepository.getBooks().size == 1)
+        verify(bookRepository).addBook(book)
     }
 }

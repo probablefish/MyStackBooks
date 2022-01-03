@@ -4,5 +4,5 @@ import com.probablefish.msb.local.ILocalBookRepository
 
 class SetBookAsUnattainedUseCase(private val bookRepository: ILocalBookRepository) {
 
-    fun execute(title: String) = bookRepository.setBookAsUnattained(title)
+    fun execute(title: String, author: String) = bookRepository.setBookAsUnattained(title, author)
 }

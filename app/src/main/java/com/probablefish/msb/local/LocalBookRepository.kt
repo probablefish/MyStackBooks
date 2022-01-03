@@ -1,40 +1,39 @@
 package com.probablefish.msb.local
 
 import com.probablefish.msb.data.Book
+import com.probablefish.msb.local.database.BookDao
 
-class LocalBookRepository : ILocalBookRepository {
-    private val books = mutableListOf<Book>()
+class LocalBookRepository(private val bookDao: BookDao) : ILocalBookRepository {
 
-    override fun addBook(book: Book) {
-        books.add(book)
+    override fun addBook(book: Book) =
+        bookDao.insert(book)
+
+
+    override fun addBooks(books: List<Book>) {
+        bookDao.insertAll(books)
     }
 
-    override fun addBooks(booksToBeAdded: List<Book>) {
-        books.addAll(booksToBeAdded)
-    }
+    override fun getBook(title: String, author: String): Book? =
+        bookDao.findByTitleAndAuthor(title, author)
 
-    override fun getBook(title: String): Book? {
-        return books.find { book -> book.title == title }
-    }
+    override fun getBooks(): List<Book> = bookDao.getAll()
 
-    override fun getBooks(): List<Book> {
-        return books
-    }
-
-    override fun removeBook(title: String) {
-        books.removeIf { book -> book.title == title}
+    override fun removeBook(title: String, author: String) {
+        bookDao.findByTitleAndAuthor(title, author)?.let {
+            bookDao.delete(it)
+        }
     }
 
     override fun removeAllBooks() {
-        books.clear()
+        bookDao.deleteAll()
     }
 
-    override fun setBookAsAttained(title: String) {
-        getBook(title)?.let { it.isAttained = true }
+    override fun setBookAsAttained(title: String, author: String) {
+        bookDao.setIsAttained(true, title, author)
     }
 
-    override fun setBookAsUnattained(title: String) {
-        getBook(title)?.let { it.isAttained = false}
+    override fun setBookAsUnattained(title: String, author: String) {
+        bookDao.setIsAttained(false, title, author)
     }
 
 }
