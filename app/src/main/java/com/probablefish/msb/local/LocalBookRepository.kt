@@ -35,5 +35,4 @@ class LocalBookRepository(private val bookDao: BookDao) : ILocalBookRepository {
     override fun setBookAsUnattained(title: String, author: String) {
         bookDao.setIsAttained(false, title, author)
     }
-
 }
